@@ -4,6 +4,19 @@ A local web app that re-speaks a recording in another voice. You save a voice fr
 
 It wraps [Seed-VC](https://github.com/Plachtaa/seed-vc) (v1 offline speech model) and runs entirely on your machine. Nothing is uploaded anywhere.
 
+## What this adds over Seed-VC
+
+Seed-VC provides the model, command-line scripts and demo pages. Used alone, you upload a reference every run, prepare training clips by hand and run `train.py` yourself. This app turns that into one guided workflow:
+
+- **Voice library:** save named voices once and reuse them, with a required consent check for each voice.
+- **Fine-tuning from the UI:** add recordings of any length. They are split at pauses into clips Seed-VC can train on, and the trained model is stored with the voice and used automatically.
+- **Audio prep:** any format ffmpeg can read is converted for you, and references are trimmed to the length Seed-VC uses.
+- **History:** each conversion is kept in its own folder.
+- **Safety on one GPU:** only one job runs at a time, and a voice can't be deleted while it is training.
+- **Reproducible setup:** Seed-VC is pinned to one commit, dependencies are locked, and it is tested on a 6 GB laptop GPU.
+
+It keeps only offline speech conversion. Seed-VC's real-time, singing and v2 modes are left out. The v1 model with 50 diffusion steps sounded best in listening tests against v2 on the voices tried here.
+
 ## Requirements
 
 - Linux or WSL2 with an NVIDIA GPU with **6 GB VRAM or more** and a recent driver (tested on an RTX 3060 Laptop, 6 GB)
