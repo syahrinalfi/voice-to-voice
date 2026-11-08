@@ -1,0 +1,10 @@
+.venv/
+__pycache__/
+data/
+# Seed-VC is cloned by each user (see README), not distributed here
+third_party/
+# Personal voice recordings and local planning notes
+voice-reference/
+tasks/
+*.pyc
+.pytest_cache/
